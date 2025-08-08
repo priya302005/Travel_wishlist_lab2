@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Travel Wishlist</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #fffde7);
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #00796b;
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      text-shadow: 1px 1px 2px #ccc;
+    }
+
+    form {
+      background-color: #ffffff;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s ease;
+    }
+
+    input:focus {
+      border-color: #00796b;
+      outline: none;
+    }
+
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 12px;
+      background-color: #00796b;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #004d40;
+    }
+
+    #wishlistDisplay {
+      margin-top: 40px;
+      width: 100%;
+      max-width: 400px;
+      background-color: #f1f8e9;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    #wishlistDisplay p {
+      margin: 10px 0;
+      padding: 10px;
+      background-color: #ffffff;
+      border-left: 4px solid #00796b;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Travel Wishlist</h1>
+  <form id="travelForm">
+    <label>Where you are:</label>
+    <input type="text" name="currentLocation" required>
+
+    <label>Where you wish to go:</label>
+    <input type="text" name="destination" required>
+
+    <label>Time taken to reach (in hours):</label>
+    <input type="number" name="travelTime" required>
+
+    <button type="submit">Add to Wishlist</button>
+  </form>
+
+  <div id="wishlistDisplay"></div>
+
+  <script>
+    const form = document.getElementById('travelForm');
+    const display = document.getElementById('wishlistDisplay');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const location = form.currentLocation.value.trim();
+      const destination = form.destination.value.trim();
+      const time = form.travelTime.value.trim();
+
+      if (location && destination && time) {
+        const entry = document.createElement('p');
+        entry.textContent = `From ${location} to ${destination} — ${time} hour(s)`;
+        display.appendChild(entry);
+
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
